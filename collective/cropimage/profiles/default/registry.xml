@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<registry>
+  <record name="collective.cropimage.ids">
+    <field type="plone.registry.field.List">
+        <title>Identifications</title>
+        <description>ID name for CSS.</description>
+        <value_type type="plone.registry.field.Dict" />
+    </field>
+    <value />
+  </record>
+</registry>

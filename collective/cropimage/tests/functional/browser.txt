@@ -1,0 +1,379 @@
+Log in as the portal owner::
+
+    >>> from plone.app.testing import TEST_USER_NAME, TEST_USER_PASSWORD
+    >>> browser.login(TEST_USER_NAME, TEST_USER_PASSWORD)
+
+Go to image::
+
+    >>> browser.open(image_url)
+
+Crop Image should now be under Actions::
+
+    >>> 'id="crop_image"' in browser.contents
+    False
+
+Continue your test::
+
+    >>> browser.open(controlpanel_url)
+    >>> 'Crop Image Registry' in browser.contents
+    True
+
+Go to Tupas Banks Registry page::
+
+    >>> browser.getLink('Crop Image Registry').click()
+
+Add ID::
+
+    >>> browser.getControl( name="crud-add.form.widgets.id").value = 'large-image'
+    >>> browser.getControl(name="crud-add.form.buttons.add").click()
+
+    >>> 'Item added successfully.' in browser.contents
+    True
+    >>> 'large-image' in browser.contents
+    True
+
+Add another ID::
+
+    >>> browser.getControl( name="crud-add.form.widgets.id").value = 'middle-image'
+    >>> browser.getControl(name="crud-add.form.buttons.add").click()
+
+    >>> 'middle-image' in browser.contents
+    True
+
+Delete ID::
+
+    >>> browser.getControl(name="crud-edit.large-image.widgets.select:list").value = 'on'
+    >>> browser.getControl(name="crud-edit.form.buttons.delete").click()
+
+    >>> 'larg-image' in browser.contents
+    False
+    >>> 'middle-image' in browser.contents
+    True
+
+Add one more  ID::
+
+    >>> browser.getControl( name="crud-add.form.widgets.id").value = 'small-image'
+    >>> browser.getControl(name="crud-add.form.buttons.add").click()
+
+    >>> 'small-image' in browser.contents
+    True
+
+Go to image::
+
+    >>> browser.open(portal_url)
+
+Crop Image should not be under Actions::
+
+    >>> 'id="crop_image"' in browser.contents
+    False
+
+    >>> browser.getLink('picture').click()
+
+Crop Image should now be under Actions::
+
+    >>> 'id="crop_image"' in browser.contents
+    True
+
+Go to Crop Image page::
+
+    >>> browser.getLink(id='crop_image').click()
+
+    >>> 'selected="selected">middle-image' in browser.contents
+    True
+
+Select ID Name as small-image::
+
+    >>> browser.getControl(name="id-name", index=0).value = ['small-image']
+    >>> browser.getControl(name="form.button.Select").click()
+
+    >>> 'selected="selected">middle-image' in browser.contents
+    False
+    >>> 'selected="selected">small-image' in browser.contents
+    True
+
+Crop image::
+
+    >>> browser.getControl(name="x1").value = '10'
+    >>> browser.getControl(name="y1").value =  '20'
+    >>> browser.getControl(name="x2").value =  '30'
+    >>> browser.getControl(name="y2").value =  '50'
+    >>> browser.getControl(name="w").value =  '20'
+    >>> browser.getControl(name="h").value =  '30'
+    >>> browser.getControl(name="form.button.Save").click()
+
+    >>> 'id="image-small-image-preview"' in browser.contents
+    True
+    >>> '<h1>small-image</h1>' in browser.contents
+    True
+    >>> 'class="crop" style="width:20px;height:30px;"' in browser.contents
+    True
+    >>> '<p style="clip:rect(20px 30px 50px 10px);top:-20px;left:-10px;">' in browser.contents
+    True
+
+Select ID Name as middle-image::
+
+    >>> browser.getControl(name="id-name", index=0).value = ['middle-image']
+    >>> browser.getControl(name="form.button.Select").click()
+
+    >>> 'selected="selected">middle-image' in browser.contents
+    True
+    >>> 'selected="selected">small-image' in browser.contents
+    False
+
+Crop more::
+
+    >>> browser.getControl(name="x1").value = '100'
+    >>> browser.getControl(name="y1").value =  '200'
+    >>> browser.getControl(name="x2").value =  '300'
+    >>> browser.getControl(name="y2").value =  '500'
+    >>> browser.getControl(name="w").value =  '200'
+    >>> browser.getControl(name="h").value =  '300'
+    >>> browser.getControl(name="form.button.Save").click()
+
+    >>> 'id="image-small-image-preview"' in browser.contents
+    True
+    >>> '<h1>small-image</h1>' in browser.contents
+    True
+    >>> 'class="crop" style="width:20px;height:30px;"' in browser.contents
+    True
+    >>> '<p style="clip:rect(20px 30px 50px 10px);top:-20px;left:-10px;">' in browser.contents
+    True
+
+    >>> 'id="image-middle-image-preview"' in browser.contents
+    True
+    >>> '<h1>middle-image</h1>' in browser.contents
+    True
+    >>> 'class="crop" style="width:200px;height:300px;"' in browser.contents
+    True
+    >>> '<p style="clip:rect(200px 300px 500px 100px);top:-200px;left:-100px;">' in browser.contents
+    True
+
+Go to news::
+
+    >>> browser.open(news_url)
+
+Crop Image should now be under Actions::
+
+    >>> 'id="crop_image"' in browser.contents
+    True
+
+Go to Crop Image page::
+
+    >>> browser.getLink(id='crop_image').click()
+
+    >>> news_crop_image_url = browser.url
+
+Select ID Name as small-image::
+
+    >>> browser.getControl(name="id-name", index=0).value = ['small-image']
+    >>> browser.getControl(name="form.button.Select").click()
+
+    >>> 'selected="selected">middle-image' in browser.contents
+    False
+    >>> 'selected="selected">small-image' in browser.contents
+    True
+
+Crop image::
+
+    >>> browser.getControl(name="x1").value = '10'
+    >>> browser.getControl(name="y1").value =  '20'
+    >>> browser.getControl(name="x2").value =  '30'
+    >>> browser.getControl(name="y2").value =  '50'
+    >>> browser.getControl(name="w").value =  '20'
+    >>> browser.getControl(name="h").value =  '30'
+    >>> browser.getControl(name="form.button.Save").click()
+
+    >>> 'id="image-small-image-preview"' in browser.contents
+    True
+    >>> '<h1>small-image</h1>' in browser.contents
+    True
+    >>> 'class="crop" style="width:20px;height:30px;"' in browser.contents
+    True
+    >>> '<p style="clip:rect(20px 30px 50px 10px);top:-20px;left:-10px;">' in browser.contents
+    True
+
+Select ID Name as middle-image::
+
+    >>> browser.getControl(name="id-name", index=0).value = ['middle-image']
+    >>> browser.getControl(name="form.button.Select").click()
+
+    >>> 'selected="selected">middle-image' in browser.contents
+    True
+    >>> 'selected="selected">small-image' in browser.contents
+    False
+
+Crop more::
+
+    >>> browser.getControl(name="x1").value = '100'
+    >>> browser.getControl(name="y1").value =  '200'
+    >>> browser.getControl(name="x2").value =  '300'
+    >>> browser.getControl(name="y2").value =  '500'
+    >>> browser.getControl(name="w").value =  '200'
+    >>> browser.getControl(name="h").value =  '300'
+    >>> browser.getControl(name="form.button.Save").click()
+
+    >>> 'id="image-small-image-preview"' in browser.contents
+    True
+    >>> '<h1>small-image</h1>' in browser.contents
+    True
+    >>> 'class="crop" style="width:20px;height:30px;"' in browser.contents
+    True
+    >>> '<p style="clip:rect(20px 30px 50px 10px);top:-20px;left:-10px;">' in browser.contents
+    True
+
+    >>> 'id="image-middle-image-preview"' in browser.contents
+    True
+    >>> '<h1>middle-image</h1>' in browser.contents
+    True
+    >>> 'class="crop" style="width:200px;height:300px;"' in browser.contents
+    True
+    >>> '<p style="clip:rect(200px 300px 500px 100px);top:-200px;left:-100px;">' in browser.contents
+    True
+
+Go to Control Panel::
+
+    >>> browser.open(controlpanel_url)
+
+Go to Tupas Banks Registry page::
+
+    >>> browser.getLink('Crop Image Registry').click()
+    >>> registry_url = browser.url
+
+    >>> browser.getControl(name="crud-edit.small-image.widgets.ratio_width").value = '600'
+    >>> browser.getControl(name="crud-edit.form.buttons.edit").click()
+
+    >>> 'value="600"' in browser.contents
+    True
+
+Go to News Crop Image URL::
+
+    >>> browser.open(news_crop_image_url)
+    >>> 'aspectRatio' in browser.contents
+    False
+
+Go to Tupas Banks Registry page::
+
+    >>> browser.open(registry_url)
+    >>> 'value="600.0"' in browser.contents
+    True
+
+    >>> browser.getControl(name="crud-edit.small-image.widgets.ratio_height").value = '450'
+    >>> browser.getControl(name="crud-edit.form.buttons.edit").click()
+
+Go to News Crop Image URL::
+
+    >>> browser.open(news_crop_image_url)
+    >>> 'aspectRatio' in browser.contents
+    False
+
+    >>> browser.getControl(name="id-name", index=0).value = ['small-image']
+    >>> browser.getControl(name="form.button.Select").click()
+
+    >>> 'aspectRatio' in browser.contents
+    True
+
+Go to Tupas Banks Registry page::
+
+    >>> browser.open(registry_url)
+    >>> 'value="600.0"' in browser.contents
+    True
+    >>> 'value="450.0"' in browser.contents
+    True
+
+
+    >>> browser.getControl(name="crud-edit.small-image.widgets.min_width").value = '60'
+    >>> browser.getControl(name="crud-edit.form.buttons.edit").click()
+
+Go to News Crop Image URL::
+
+    >>> browser.open(news_crop_image_url)
+
+    >>> browser.getControl(name="id-name", index=0).value = ['small-image']
+    >>> browser.getControl(name="form.button.Select").click()
+
+    >>> 'aspectRatio' in browser.contents
+    True
+    >>> 'minSize' in browser.contents
+    False
+
+Go to Tupas Banks Registry page and set Minimum Height::
+
+    >>> browser.open(registry_url)
+    >>> 'value="600.0"' in browser.contents
+    True
+    >>> 'value="450.0"' in browser.contents
+    True
+    >>> 'value="60.0"' in browser.contents
+    True
+    >>> browser.getControl(name="crud-edit.small-image.widgets.min_height").value = '45'
+    >>> browser.getControl(name="crud-edit.form.buttons.edit").click()
+
+Go to News Crop Image URL and there should be minSize::
+
+    >>> browser.open(news_crop_image_url)
+
+    >>> browser.getControl(name="id-name", index=0).value = ['small-image']
+    >>> browser.getControl(name="form.button.Select").click()
+
+    >>> 'aspectRatio' in browser.contents
+    True
+    >>> 'minSize' in browser.contents
+    True
+
+Go to Tupas Banks Registry page and set Maximum Width::
+
+    >>> browser.open(registry_url)
+    >>> 'value="600.0"' in browser.contents
+    True
+    >>> 'value="450.0"' in browser.contents
+    True
+    >>> 'value="60.0"' in browser.contents
+    True
+    >>> 'value="45.0"' in browser.contents
+    True
+    >>> browser.getControl(name="crud-edit.small-image.widgets.max_height").value = '300'
+    >>> browser.getControl(name="crud-edit.form.buttons.edit").click()
+
+Go to News Crop Image URL and there should not be maxSize::
+
+    >>> browser.open(news_crop_image_url)
+
+    >>> browser.getControl(name="id-name", index=0).value = ['small-image']
+    >>> browser.getControl(name="form.button.Select").click()
+
+    >>> 'aspectRatio' in browser.contents
+    True
+    >>> 'minSize' in browser.contents
+    True
+    >>> 'maxSize' in browser.contents
+    False
+
+Go to Tupas Banks Registry page and set Maximum Height::
+
+    >>> browser.open(registry_url)
+    >>> 'value="600.0"' in browser.contents
+    True
+    >>> 'value="450.0"' in browser.contents
+    True
+    >>> 'value="60.0"' in browser.contents
+    True
+    >>> 'value="45.0"' in browser.contents
+    True
+    >>> 'value="300.0"' in browser.contents
+    True
+    >>> browser.getControl(name="crud-edit.small-image.widgets.max_height").value = '225'
+    >>> browser.getControl(name="crud-edit.form.buttons.edit").click()
+
+Go to News Crop Image URL and there should be minSize::
+
+    >>> browser.open(news_crop_image_url)
+
+    >>> browser.getControl(name="id-name", index=0).value = ['small-image']
+    >>> browser.getControl(name="form.button.Select").click()
+
+    >>> 'aspectRatio' in browser.contents
+    True
+    >>> 'minSize' in browser.contents
+    True
+    >>> 'minSize' in browser.contents
+    True

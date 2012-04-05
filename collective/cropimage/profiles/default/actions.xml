@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<object name="portal_actions" meta_type="Plone Actions Tool"
+   xmlns:i18n="http://xml.zope.org/namespaces/i18n">
+  <object name="object_buttons" meta_type="CMF Action Category">
+    <object name="crop_image" meta_type="CMF Action" i18n:domain="collective.cripimage">
+     <property name="title" i18n:translate="">Crop Image</property>
+     <property name="description" i18n:translate=""></property>
+     <property
+        name="url_expr">string:${globals_view/getCurrentObjectUrl}/@@crop-image</property>
+     <property
+        name="available_expr">python: object.restrictedTraverse("has-image")()</property>
+     <property name="permissions">
+      <element value="Modify portal content"/>
+     </property>
+     <property name="visible">True</property>
+    </object>
+  </object>
+</object>

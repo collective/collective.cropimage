@@ -1,0 +1,10 @@
+*.egg-info
+*.mo
+*.pyc
+*.pyo
+*~
+.DS_Store
+.long-description.html
+collective/cropimage/docs/_build/*
+dist
+setup.cfg

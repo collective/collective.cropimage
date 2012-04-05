@@ -1,0 +1,62 @@
+<configure
+  i18n_domain="collective.cropimage"
+  xmlns:browser="http://namespaces.zope.org/browser"
+  xmlns="http://namespaces.zope.org/zope"
+  >
+
+  <browser:resourceDirectory
+    directory="javascripts"
+    layer=".interfaces.ICollectiveCropimageLayer"
+    name="collective.cropimage.javascripts"
+    />
+
+  <browser:resourceDirectory
+    directory="stylesheets"
+    layer=".interfaces.ICollectiveCropimageLayer"
+    name="collective.cropimage.stylesheets"
+    />
+
+  <browser:page
+    class=".template.CropImageIDControlPanelView"
+    for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+    layer=".interfaces.ICollectiveCropimageLayer"
+    name="crop-image-controlpanel"
+    permission="cmf.ManagePortal"
+    />
+
+  <browser:page
+    class=".template.CropImageView"
+    for="*"
+    layer=".interfaces.ICollectiveCropimageLayer"
+    name="crop-image"
+    permission="cmf.ModifyPortalContent"
+    />
+
+  <browser:page
+    attribute="image_fields"
+    class=".miscellaneous.Miscellaneous"
+    for="*"
+    layer=".interfaces.ICollectiveCropimageLayer"
+    name="image-fields"
+    permission="cmf.ModifyPortalContent"
+    />
+
+  <browser:page
+    attribute="has_image"
+    class=".miscellaneous.Miscellaneous"
+    for="*"
+    layer=".interfaces.ICollectiveCropimageLayer"
+    name="has-image"
+    permission="cmf.ModifyPortalContent"
+    />
+
+  <browser:page
+    attribute="cropped_image"
+    class=".miscellaneous.Miscellaneous"
+    for="*"
+    layer=".interfaces.ICollectiveCropimageLayer"
+    name="cropped-image"
+    permission="zope2.View"
+    />
+
+</configure>

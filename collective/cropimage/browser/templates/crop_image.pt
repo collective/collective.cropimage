@@ -1,0 +1,62 @@
+<html 
+  i18n:domain="collective.cropimage"
+  lang="en"
+  metal:use-macro="context/main_template/macros/master"
+  xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+  xmlns:metal="http://xml.zope.org/namespaces/metal"
+  xmlns:tal="http://xml.zope.org/namespaces/tal"
+  >
+  <head>
+  <metal:javascriptslot fill-slot="javascript_head_slot">
+    <script type="text/javascript">
+      <tal:script tal:replace="view/script" />
+    </script>
+  </metal:javascriptslot>
+  </head>
+  <body>
+    <div metal:fill-slot="main">
+      <form method="post"
+            tal:attributes="action view/current_url">
+        <label>ID Name</label>
+        <div tal:replace="structure view/select" />
+        <input type="submit"
+               class="context"
+               value="Select"
+               i18n:attributes="value"
+               name="form.button.Select"
+               />
+      </form>
+      <tal:images tal:repeat="image view/images">
+        <div tal:replace="structure image/full-image" />
+        <form id="coords"
+              class="coords"
+              method="post"
+              tal:attributes="action view/current_url">
+          <div>
+            <label>X1 <input type="text" size="4" id="x1" name="x1" /></label>
+            <label>Y1 <input type="text" size="4" id="y1" name="y1" /></label>
+            <label>X2 <input type="text" size="4" id="x2" name="x2" /></label>
+            <label>Y2 <input type="text" size="4" id="y2" name="y2" /></label>
+            <label>W <input type="text" size="4" id="w" name="w" /></label>
+            <label>H <input type="text" size="4" id="h" name="h" /></label>
+          </div>
+          <div>
+            <input type="hidden" name="field"
+                   tal:attributes="value image/field" />
+            <input type="hidden" name="id-name"
+                   tal:attributes="value view/selected_id" />
+            <input type="submit"
+                   class="context"
+                   value="Save"
+                   i18n:attributes="value"
+                   name="form.button.Save"
+                   />
+          </div>
+        </form>
+        <tal:previews tal:repeat="preview image/previews">
+          <div tal:replace="structure preview" />
+        </tal:previews>
+      </tal:images>
+    </div>
+  </body>
+</html>
