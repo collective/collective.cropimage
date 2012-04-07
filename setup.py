@@ -4,7 +4,7 @@ from setuptools import setup
 
 setup(
     name='collective.cropimage',
-    version='1.2',
+    version='1.2.1',
     description="Store cropped image dimension for farther usage.",
     long_description=open("README.rst").read(),
     # Get more strings from
