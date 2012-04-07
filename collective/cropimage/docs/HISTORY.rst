@@ -1,25 +1,26 @@
 Changelog
-=========
+------------
 
-1.2 (2012-04-XX)
------------------
+1.2.1 (2012-04-07)
+==================
 
-- Package name changed from inicie.cropimage into collective.cropimage.
-- Turned into non-Zope2 package.
+- Package name changed from inicie.cropimage into collective.cropimage. [taito]
+- Turned into non-Zope2 package. [taito]
+- Javascript loading error for production site fixed. [taito]
 
 1.1.1 (2012-01-25)
-------------------
+==================
 
-- Some CSS updates. [taito]
+- CSS updates. [taito]
 
 1.1 (2011-11-12)
-----------------
+==================
 
 - Setting aspectRatio, minSize and maxSize is not available. [taito]
 - Copy right updated. [taito]
 - Tested with collective.contentleadimage. [taito]
 
 1.0 (2011-10-03)
-----------------
+==================
 
 - Initial release. [taito]

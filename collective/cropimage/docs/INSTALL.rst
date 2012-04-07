@@ -1,10 +1,13 @@
 Installation
-============
+----------------
+
+You may list ``collective.cropimage`` to ``buildout.cfg`` or ``setup.py`` in your own package.
+
+zc.buildout and the plone.recipe.zope2instance
+========================================================
 
 Use zc.buildout and the plone.recipe.zope2instance
-recipe to manage your project:
-
-* Add ``collective.cropimage`` to the list of eggs to install like::
+recipe by adding ``collective.cropimage`` to the list of egg::
 
     [buildout]
     ...
@@ -12,6 +15,8 @@ recipe to manage your project:
         ...
         collective.cropimage
 
-* Re-run buildout, e.g. with::
 
-    $ ./bin/buildout
+Dependency to your own package
+=====================================
+
+You may also list to install_requires to ``setup.py`` within your package.

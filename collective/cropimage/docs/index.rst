@@ -6,7 +6,7 @@ How to crop image
 1. Activate collective.cropimage package through Add-ons configuration page.
 2. Click link  ``Crop Image Registry`` under **Add-on Configuration**.
 3. Add ID with which the crop dimension will be stored.
-4. Go to content type where you have croppable images.
+4. Go to content type where you want to crop images.
 5. From Actions, click ``Crop Image``.
 6. Select the name of ID.
 7. Now you can drag over image to select the crop area.

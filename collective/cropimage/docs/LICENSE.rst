@@ -1,7 +1,7 @@
 License
 =======
 
-Copyright (c) 2011, Taito Horiuchi.
+Copyright (c) 2011-2012, Taito Horiuchi.
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without

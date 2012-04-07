@@ -1,12 +1,19 @@
 from setuptools import find_packages
 from setuptools import setup
 
+import os
+
+long_description = (
+    open(os.path.join("collective", "cropimage", "docs", "README.rst")).read() + "\n" +
+    open(os.path.join("collective", "cropimage", "docs", "HISTORY.rst")).read() + "\n" +
+    open(os.path.join("collective", "cropimage", "docs", "CONTRIBUTORS.rst")).read()
+)
 
 setup(
     name='collective.cropimage',
     version='1.2.1',
     description="Store cropped image dimension for farther usage.",
-    long_description=open("README.rst").read(),
+    long_description=long_description,
     # Get more strings from
     # http://pypi.python.org/pypi?:action=list_classifiers
     classifiers=[
