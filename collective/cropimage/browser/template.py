@@ -158,7 +158,8 @@ class CropImageView(BrowserView):
         variables += aspectRatio if aspectRatio is not None else ''
         variables += minSize if minSize is not None else ''
         variables += maxSize if maxSize is not None else ''
-        script = """jq(function(jq) {
+        script = """<script type="text/javascript">
+        jq(function(jq) {
             jq('#cropbox').Jcrop({
                 onChange:   showCoords,
                 onSelect:   showCoords,
@@ -184,6 +185,7 @@ class CropImageView(BrowserView):
         jq('#h').css({color:'inherit'});
       },500);
     };
+</script>
 """
         return script
 
