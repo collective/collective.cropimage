@@ -6,21 +6,16 @@
   xmlns:metal="http://xml.zope.org/namespaces/metal"
   xmlns:tal="http://xml.zope.org/namespaces/tal"
   >
-  <!-- <head>
+  <head>
     <metal:javascriptslot fill-slot="javascript_head_slot">
-      <script type="text/javascript">
         <tal:script tal:replace="structure view/script" />
-      </script>
     </metal:javascriptslot>
-  </head> -->
+  </head>
   <body>
     <div metal:fill-slot="main">
       <form method="post"
             tal:attributes="action view/current_url">
         <label>ID Name</label>
-        <!-- <script type="text/javascript"> -->
-          <div tal:replace="structure view/js_script" />
-        <!-- </script> -->
         <div tal:replace="structure view/select" />
         <input type="submit"
                class="context"
