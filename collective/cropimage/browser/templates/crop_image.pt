@@ -18,9 +18,9 @@
       <form method="post"
             tal:attributes="action view/current_url">
         <label>ID Name</label>
-        <script type="text/javascript">
+        <!-- <script type="text/javascript"> -->
           <div tal:replace="structure view/js_script" />
-        </script>
+        <!-- </script> -->
         <div tal:replace="structure view/select" />
         <input type="submit"
                class="context"
