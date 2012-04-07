@@ -5,6 +5,7 @@ Changelog
 -----------------
 
 - Package name changed from inicie.cropimage into collective.cropimage.
+- Turned into non-Zope2 package.
 
 1.1.1 (2012-01-25)
 ------------------
