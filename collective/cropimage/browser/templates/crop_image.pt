@@ -1,23 +1,26 @@
 <html 
-  lang="en"
-  xmlns:i18n="http://xml.zope.org/namespaces/i18n"
   i18n:domain="collective.cropimage"
-  xmlns:tal="http://xml.zope.org/namespaces/tal"
-  xmlns:metal="http://xml.zope.org/namespaces/metal"
+  lang="en"
   metal:use-macro="context/main_template/macros/master"
+  xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+  xmlns:metal="http://xml.zope.org/namespaces/metal"
+  xmlns:tal="http://xml.zope.org/namespaces/tal"
   >
-  <head>
+  <!-- <head>
     <metal:javascriptslot fill-slot="javascript_head_slot">
       <script type="text/javascript">
         <tal:script tal:replace="structure view/script" />
       </script>
     </metal:javascriptslot>
-  </head>
+  </head> -->
   <body>
     <div metal:fill-slot="main">
       <form method="post"
             tal:attributes="action view/current_url">
         <label>ID Name</label>
+        <script type="text/javascript">
+          <tal:script tal:replace="structure view/script" />
+        </script>
         <div tal:replace="structure view/select" />
         <input type="submit"
                class="context"
