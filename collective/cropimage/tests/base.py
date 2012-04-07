@@ -2,7 +2,6 @@ from plone.app.testing import FunctionalTesting
 from plone.app.testing import IntegrationTesting
 from plone.app.testing import PLONE_FIXTURE
 from plone.app.testing import PloneSandboxLayer
-from plone.testing import z2
 
 import unittest2 as unittest
 
@@ -16,7 +15,6 @@ class CollectiveCropimageLayer(PloneSandboxLayer):
         # Load ZCML
         import collective.cropimage
         self.loadZCML(package=collective.cropimage)
-        z2.installProduct(app, 'collective.cropimage')
 
     def setUpPloneSite(self, portal):
         """Set up Plone."""
@@ -25,7 +23,6 @@ class CollectiveCropimageLayer(PloneSandboxLayer):
 
     def tearDownZope(self, app):
         """Tear down Zope."""
-        z2.uninstallProduct(app, 'collective.cropimage')
 
 
 FIXTURE = CollectiveCropimageLayer()

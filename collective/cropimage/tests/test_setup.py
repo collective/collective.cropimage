@@ -68,32 +68,61 @@ class TestCase(IntegrationTestCase):
         res = '++resource++collective.cropimage.stylesheets/main.css'
         self.assertTrue(res in css.getResourceIds())
 
-    def test_uninstall(self):
+    def test_browserlayer(self):
+        from collective.cropimage.browser.interfaces import ICollectiveCropimageLayer
+        from plone.browserlayer import utils
+        self.failUnless(ICollectiveCropimageLayer in utils.registered_layers())
+
+    def test_uninstall__package(self):
         installer = getToolByName(self.portal, 'portal_quickinstaller')
         installer.uninstallProducts(['collective.cropimage'])
         self.failIf(installer.isProductInstalled('collective.cropimage'))
+
+    def test_uninstall__registry__collective_cropimage_ids(self):
+        setup_tool = getToolByName(self.portal, 'portal_setup')
+        setup_tool.runAllImportStepsFromProfile(
+            'profile-collective.cropimage:uninstall'
+        )
         from zope.component import getUtility
         from plone.registry.interfaces import IRegistry
         registry = getUtility(IRegistry)
         ## collective.cropimage.banks should be uninstalled form registry.
         self.assertRaises(KeyError, lambda: registry['collective.cropimage.ids'])
+
+    def test_uninstall__controlpanel(self):
+        installer = getToolByName(self.portal, 'portal_quickinstaller')
+        installer.uninstallProducts(['collective.cropimage'])
         controlpanel = getToolByName(self.portal, 'portal_controlpanel')
         ids = [action.id for action in controlpanel.listActions()]
         ## crop_image_registry configlet should be uninstalled from controlpanel
         self.assertTrue('crop_image_registry' not in ids)
+
+    def test_uninstall__actions(self):
+        installer = getToolByName(self.portal, 'portal_quickinstaller')
+        installer.uninstallProducts(['collective.cropimage'])
         ## crop_image should be uninstalled from actions
         actions = getToolByName(self.portal, 'portal_actions')
         self.assertFalse(hasattr(actions.object_buttons, 'crop_image'))
+
+    def test_uninstall__jsregistry(self):
+        installer = getToolByName(self.portal, 'portal_quickinstaller')
+        installer.uninstallProducts(['collective.cropimage'])
         ## jsregisty.xml should be uninstalled.
         javascripts = getToolByName(self.portal, 'portal_javascripts')
         res = '++resource++collective.cropimage.javascripts/jquery.Jcrop.js'
         self.assertFalse(res in javascripts.getResourceIds())
+
+    def test_uninstall__cssregistry(self):
+        installer = getToolByName(self.portal, 'portal_quickinstaller')
+        installer.uninstallProducts(['collective.cropimage'])
         ## cssregistry.xml should be uninstalled.
         css = getToolByName(self.portal, 'portal_css')
         res = '++resource++collective.cropimage.stylesheets/main.css'
         self.assertFalse(res in css.getResourceIds())
 
-    def test_browserlayer(self):
+    def test_uninstall__browserlayer(self):
+        installer = getToolByName(self.portal, 'portal_quickinstaller')
+        installer.uninstallProducts(['collective.cropimage'])
         from collective.cropimage.browser.interfaces import ICollectiveCropimageLayer
         from plone.browserlayer import utils
-        self.failUnless(ICollectiveCropimageLayer in utils.registered_layers())
+        self.failIf(ICollectiveCropimageLayer in utils.registered_layers())

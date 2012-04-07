@@ -1,6 +1,11 @@
 Changelog
 =========
 
+1.2 (2012-04-XX)
+-----------------
+
+- Package name changed from inicie.cropimage into collective.cropimage.
+
 1.1.1 (2012-01-25)
 ------------------
 
