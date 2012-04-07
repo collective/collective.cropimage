@@ -131,7 +131,7 @@ class CropImageView(BrowserView):
         html += '</select>'
         return html
 
-    def script(self):
+    def js_script(self):
         data = [i for i in self.ids() if i['id'] == self.selected_id()][0]
         ratio_width = data['ratio_width']
         ratio_height = data['ratio_height']
