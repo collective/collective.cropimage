@@ -1,17 +1,17 @@
 <html 
-  i18n:domain="collective.cropimage"
   lang="en"
-  metal:use-macro="context/main_template/macros/master"
   xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-  xmlns:metal="http://xml.zope.org/namespaces/metal"
+  i18n:domain="collective.cropimage"
   xmlns:tal="http://xml.zope.org/namespaces/tal"
+  xmlns:metal="http://xml.zope.org/namespaces/metal"
+  metal:use-macro="context/main_template/macros/master"
   >
   <head>
-  <metal:javascriptslot fill-slot="javascript_head_slot">
-    <script type="text/javascript">
-      <tal:script tal:replace="structure view/script" />
-    </script>
-  </metal:javascriptslot>
+    <metal:javascriptslot fill-slot="javascript_head_slot">
+      <script type="text/javascript">
+        <tal:script tal:replace="structure view/script" />
+      </script>
+    </metal:javascriptslot>
   </head>
   <body>
     <div metal:fill-slot="main">
