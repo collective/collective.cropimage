@@ -19,7 +19,7 @@
             tal:attributes="action view/current_url">
         <label>ID Name</label>
         <script type="text/javascript">
-          <tal:script tal:replace="structure view/script" />
+          <div tal:replace="structure view/script" />
         </script>
         <div tal:replace="structure view/select" />
         <input type="submit"
