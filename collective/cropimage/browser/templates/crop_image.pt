@@ -9,7 +9,7 @@
   <head>
   <metal:javascriptslot fill-slot="javascript_head_slot">
     <script type="text/javascript">
-      <tal:script tal:replace="view/script" />
+      <tal:script tal:replace="structure view/script" />
     </script>
   </metal:javascriptslot>
   </head>
