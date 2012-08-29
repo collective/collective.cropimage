@@ -3,7 +3,8 @@ from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from collective.cropimage import _
 from collective.cropimage.id import ID
-from collective.cropimage.id import IID
+from collective.cropimage.interfaces import IAddID
+from collective.cropimage.interfaces import IID
 from persistent.dict import PersistentDict
 from plone.app.z3cform.layout import wrap_form
 from plone.registry.interfaces import IRegistry
@@ -16,6 +17,7 @@ from zope.component import getUtility
 class CropImageIDControlPanelForm(crud.CrudForm):
     """Form for ControlPanel."""
 
+    add_schema = IAddID
     update_schema = IID
 
     label = _(u'Crop Image ID')
@@ -41,22 +43,6 @@ class CropImageIDControlPanelForm(crud.CrudForm):
         add_form.widgets['max_width'].size = 3
         add_form.widgets['max_height'].size = 3
 
-    def get_items(self):
-        """Get items to show on the form."""
-        registry = getUtility(IRegistry)
-        ids = registry['collective.cropimage.ids']
-        data = []
-        for i in ids:
-            item = i.copy()
-            id = item.pop('id')
-            data.append(
-                (
-                    str(id),
-                    ID(id, **item)
-                )
-            )
-        return data
-
     def add(self, data):
         """Add new ID data to collective.cropimage.ids registry.
 
@@ -64,9 +50,18 @@ class CropImageIDControlPanelForm(crud.CrudForm):
         :type data: dict
         """
         registry = getUtility(IRegistry)
-        ids = registry['collective.cropimage.ids']
-        ids.append(data)
-        registry['collective.cropimage.ids'] = ids
+        items = registry['collective.cropimage.ids']
+        items[data.pop(u'id')] = data
+        registry['collective.cropimage.ids'] = items
+
+    def get_items(self):
+        """Get items to show on the form."""
+        registry = getUtility(IRegistry)
+        items = registry['collective.cropimage.ids']
+        data = []
+        for key in items:
+            data.append((key, ID(key, **items[key])))
+        return data
 
     def remove(self, (id, item)):
         """Delete ID data from collective.cropimage.ids registry.
@@ -78,21 +73,19 @@ class CropImageIDControlPanelForm(crud.CrudForm):
         :type id: object
         """
         registry = getUtility(IRegistry)
-        ids = registry['collective.cropimage.ids']
-        ids = [i for i in ids if i['id'] != id]
-        registry['collective.cropimage.ids'] = ids
+        items = registry['collective.cropimage.ids']
+        del items[id]
+        registry['collective.cropimage.ids'] = items
 
     def before_update(self, item, data):
         registry = getUtility(IRegistry)
-        ids = registry['collective.cropimage.ids']
-        ids = [i for i in ids if i['id'] != data['id']]
-        ids.append(data)
-        registry['collective.cropimage.ids'] = ids
+        items = registry['collective.cropimage.ids']
+        items[item.id] = data
+        registry['collective.cropimage.ids'] = items
 
 CropImageIDControlPanelView = wrap_form(
     CropImageIDControlPanelForm,
-    index=ViewPageTemplateFile('templates/controlpanel.pt')
-)
+    index=ViewPageTemplateFile('templates/controlpanel.pt'))
 
 
 class CropImageView(BrowserView):
@@ -112,27 +105,29 @@ class CropImageView(BrowserView):
             anno[name].update(self.dimension(form))
         return self.template()
 
+    @property
     def ids(self):
         registry = getUtility(IRegistry)
         return registry['collective.cropimage.ids']
 
+    @property
     def selected_id(self):
-        return self.request.form.get('id-name') or self.ids()[0]['id']
+        return self.request.form.get('id-name') or self.ids.keys()[0]
 
     def select(self):
         """Form select tag with the ID options."""
         name = 'id-name'
         html = '<select name="{0}" id="{0}">'.format(name)
-        for i in self.ids():
-            if i['id'] == self.selected_id():
-                html += '<option value="{0}" selected="selected">{0}</option>'.format(i['id'])
+        for key in self.ids:
+            if key == self.selected_id:
+                html += '<option value="{0}" selected="selected">{0}</option>'.format(key)
             else:
-                html += '<option value="{0}">{0}</option>'.format(i['id'])
+                html += '<option value="{0}">{0}</option>'.format(key)
         html += '</select>'
         return html
 
     def script(self):
-        data = [i for i in self.ids() if i['id'] == self.selected_id()][0]
+        data = self.ids[self.selected_id]
         ratio_width = data['ratio_width']
         ratio_height = data['ratio_height']
         min_width = data['min_width']

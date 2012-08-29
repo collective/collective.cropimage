@@ -1,10 +1,17 @@
 <?xml version="1.0"?>
 <registry>
   <record name="collective.cropimage.ids">
-    <field type="plone.registry.field.List">
-        <title>Identifications</title>
-        <description>ID name for CSS.</description>
-        <value_type type="plone.registry.field.Dict" />
+    <field type="plone.registry.field.Dict">
+      <title>Identifications</title>
+      <description>ID for styling, etc.</description>
+      <key_type type="plone.registry.field.ASCIILine" />
+      <value_type type="plone.registry.field.Dict">
+        <title>Value list</title>
+        <key_type type="plone.registry.field.ASCII" />
+        <value_type type="plone.registry.field.Float">
+          <title>Values</title>
+        </value_type>
+      </value_type>
     </field>
     <value />
   </record>

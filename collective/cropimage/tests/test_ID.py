@@ -1,4 +1,4 @@
-import unittest2 as unittest
+import unittest
 
 
 class TestID(unittest.TestCase):
@@ -13,10 +13,3 @@ class TestID(unittest.TestCase):
         self.assertTrue(isinstance(item, ID))
         from collective.cropimage.id import IID
         self.assertTrue(IID.providedBy(item))
-
-    def test__repr__(self):
-        item = self.createInstance()
-        self.assertEqual(
-            item.__repr__(),
-            "<ID with id='id01'>"
-        )

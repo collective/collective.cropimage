@@ -3,7 +3,7 @@ from plone.app.testing import IntegrationTesting
 from plone.app.testing import PLONE_FIXTURE
 from plone.app.testing import PloneSandboxLayer
 
-import unittest2 as unittest
+import unittest
 
 
 class CollectiveCropimageLayer(PloneSandboxLayer):

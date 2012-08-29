@@ -1,6 +1,5 @@
-Log in as the portal owner::
+Log in as Manager::
 
-    >>> from plone.app.testing import TEST_USER_NAME, TEST_USER_PASSWORD
     >>> browser.login(TEST_USER_NAME, TEST_USER_PASSWORD)
 
 Go to image::
@@ -12,7 +11,7 @@ Crop Image should now be under Actions::
     >>> 'id="crop_image"' in browser.contents
     False
 
-Continue your test::
+Go to control panel::
 
     >>> browser.open(controlpanel_url)
     >>> 'Crop Image Registry' in browser.contents
@@ -37,6 +36,8 @@ Add another ID::
     >>> browser.getControl( name="crud-add.form.widgets.id").value = 'middle-image'
     >>> browser.getControl(name="crud-add.form.buttons.add").click()
 
+    >>> 'large-image' in browser.contents
+    True
     >>> 'middle-image' in browser.contents
     True
 
@@ -58,9 +59,27 @@ Add one more  ID::
     >>> 'small-image' in browser.contents
     True
 
+Update values::
+
+    >>> browser.getControl(name="crud-edit.middle-image.widgets.ratio_width").value = '4.0'
+    >>> browser.getControl(name="crud-edit.middle-image.widgets.ratio_height").value = '3.0'
+    >>> browser.getControl(name="crud-edit.form.buttons.edit").click()
+
+    >>> browser.getControl(name="crud-edit.middle-image.widgets.ratio_width").value = 'AAA'
+    >>> browser.getControl(name="crud-edit.middle-image.widgets.ratio_height").value = 'BBB'
+    >>> browser.getControl(name="crud-edit.form.buttons.edit").click()
+
+    >>> browser.getLink('Crop Image Registry').click()
+
+    >>> 'value="4.0"' in browser.contents
+    True
+    >>> 'value="3.0"' in browser.contents
+    True
+
+
 Go to image::
 
-    >>> browser.open(portal_url)
+    >>> browser.open('/')
 
 Crop Image should not be under Actions::
 
@@ -78,18 +97,26 @@ Go to Crop Image page::
 
     >>> browser.getLink(id='crop_image').click()
 
-    >>> 'selected="selected">middle-image' in browser.contents
-    True
+    >>> print browser.bycss('#id-name')
+    --- 1 ---
+    <select name="id-name" id="id-name"><option value="small-image" selected>small-image</option><option value="middle-image">middle-image</option></select>
 
-Select ID Name as small-image::
+Select middle-image::
+
+    >>> browser.getControl(name="id-name", index=0).value = ['middle-image']
+    >>> browser.getControl(name="form.button.Select").click()
+    >>> print browser.bycss('#id-name')
+    --- 1 ---
+    <select name="id-name" id="id-name"><option value="small-image">small-image</option><option value="middle-image" selected>middle-image</option></select>
+
+Select small-image::
 
     >>> browser.getControl(name="id-name", index=0).value = ['small-image']
     >>> browser.getControl(name="form.button.Select").click()
 
-    >>> 'selected="selected">middle-image' in browser.contents
-    False
-    >>> 'selected="selected">small-image' in browser.contents
-    True
+    >>> print browser.bycss('#id-name')
+    --- 1 ---
+    <select name="id-name" id="id-name"><option value="small-image" selected>small-image</option><option value="middle-image">middle-image</option></select>
 
 Crop image::
 
@@ -234,7 +261,7 @@ Go to Control Panel::
 
     >>> browser.open(controlpanel_url)
 
-Go to Tupas Banks Registry page::
+Go to Crop Image Registry page::
 
     >>> browser.getLink('Crop Image Registry').click()
     >>> registry_url = browser.url
@@ -264,13 +291,10 @@ Go to News Crop Image URL::
 
     >>> browser.open(news_crop_image_url)
     >>> 'aspectRatio' in browser.contents
-    False
+    True
 
     >>> browser.getControl(name="id-name", index=0).value = ['small-image']
     >>> browser.getControl(name="form.button.Select").click()
-
-    >>> 'aspectRatio' in browser.contents
-    True
 
 Go to Tupas Banks Registry page::
 

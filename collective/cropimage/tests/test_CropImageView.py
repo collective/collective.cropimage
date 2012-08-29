@@ -1,5 +1,5 @@
 import mock
-import unittest2 as unittest
+import unittest
 
 
 class TestCropImageView(unittest.TestCase):
@@ -56,69 +56,6 @@ class TestCropImageView(unittest.TestCase):
                 }
             }
         )
-
-    @mock.patch('collective.cropimage.browser.template.getUtility')
-    def test_ids(self, getUtility):
-        getUtility.return_value = {'collective.cropimage.ids': 'Something'}
-        context = mock.Mock()
-        request = mock.Mock()
-        item = self.createCropImageView(context, request)
-        self.assertEqual(item.ids(), 'Something')
-
-    def test_selected_id(self):
-        context = mock.Mock()
-        request = mock.Mock()
-        request.form = {}
-        item = self.createCropImageView(context, request)
-        item.ids = mock.Mock(return_value=[{'id': 'ID'}])
-        self.assertEqual(item.selected_id(), 'ID')
-        request.form = {'id-name': 'Some ID'}
-        item = self.createCropImageView(context, request)
-        self.assertEqual(item.selected_id(), 'Some ID')
-
-    @mock.patch('collective.cropimage.browser.template.getUtility')
-    def test_select(self, getUtility):
-        context = mock.Mock()
-        request = mock.Mock()
-        item = self.createCropImageView(context, request)
-        getUtility.return_value = {'collective.cropimage.ids': [{'id': 'small-image'}, {'id': 'middle-image'}]}
-        self.assertEqual(
-            item.select(),
-            '<select name="id-name" id="id-name"><option value="small-image">small-image</option><option value="middle-image">middle-image</option></select>'
-        )
-
-    @mock.patch('collective.cropimage.browser.template.getUtility')
-    def test_script(self, getUtility):
-        getUtility.return_value = {'collective.cropimage.ids': [{'id': 'ID'}]}
-        context = mock.Mock()
-        request = mock.Mock()
-        item = self.createCropImageView(context, request)
-        data = dict(
-            id='ID',
-            ratio_width=0.0,
-            ratio_height=0.0,
-            min_width=0.0,
-            min_height=0.0,
-            max_width=0.0,
-            max_height=0.0,
-        )
-        item.ids = mock.Mock(return_value=[data])
-        item.selected_id = mock.Mock(return_value='ID')
-        keys = ['aspectRatio', 'minSize', 'maxSize']
-        for key in keys:
-            self.assertFalse(key in item.script())
-        data.update({'ratio_width': 600.0})
-        self.assertFalse('aspectRatio' in item.script())
-        data.update({'ratio_height': 450.0})
-        self.assertTrue('aspectRatio: 600.0/450.0' in item.script())
-        data.update({'min_width': 60.0})
-        self.assertFalse('minSize' in item.script())
-        data.update({'min_height': 45.0})
-        self.assertTrue('minSize: [60.0, 45.0]' in item.script())
-        data.update({'max_width': 120.0})
-        self.assertFalse('maxSize' in item.script())
-        data.update({'max_height': 90.0})
-        self.assertTrue('maxSize: [120.0, 90.0]' in item.script())
 
     @mock.patch('collective.cropimage.browser.template.aq_inner')
     def test_fields(self, aq_inner):

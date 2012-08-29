@@ -1,6 +1,8 @@
 from collective.cropimage.tests.base import FUNCTIONAL_TESTING
 from hexagonit.testing.browser import Browser
 from plone.app.testing import TEST_USER_ID
+from plone.app.testing import TEST_USER_NAME
+from plone.app.testing import TEST_USER_PASSWORD
 from plone.app.testing import setRoles
 from plone.testing import layered
 from zope.testing import renormalizing
@@ -12,7 +14,7 @@ import manuel.testing
 import os
 import re
 import transaction
-import unittest2 as unittest
+import unittest
 
 FLAGS = doctest.NORMALIZE_WHITESPACE | doctest.ELLIPSIS | doctest.REPORT_NDIFF | doctest.REPORT_ONLY_FIRST_FAILURE
 
@@ -24,20 +26,20 @@ CHECKER = renormalizing.RENormalizing([
 
 def setUp(self):
     layer = self.globs['layer']
+    browser = Browser(layer['app'])
+    portal = layer['portal']
     # Update global variables within the tests.
     self.globs.update({
-        'portal': layer['portal'],
-        'portal_url': layer['portal'].absolute_url(),
-        'browser': Browser(layer['app']),
+        'TEST_USER_NAME': TEST_USER_NAME,
+        'TEST_USER_PASSWORD': TEST_USER_PASSWORD,
+        'browser': browser,
+        'portal': portal,
     })
 
-    portal = self.globs['portal']
-    browser = self.globs['browser']
-    portal_url = self.globs['portal_url']
+    portal_url = portal.absolute_url()
     browser.setBaseUrl(portal_url)
 
-    controlpanel_url = '{0}/@@overview-controlpanel'.format(portal_url)
-    self.globs['controlpanel_url'] = controlpanel_url
+    self.globs['controlpanel_url'] = '{0}/@@overview-controlpanel'.format(portal_url)
 
     browser.handleErrors = True
     portal.error_log._ignored_exceptions = ()
@@ -47,27 +49,14 @@ def setUp(self):
     image_file = open(os.path.join(os.path.dirname(__file__), 'image', 'image.png'), 'rb')
 
     ## Creat Image.
-    portal.invokeFactory(
-        'Image',
-        'picture',
-        image='image.png',
-    )
-    image = portal.picture
+    image = portal[portal.invokeFactory('Image', 'picture', image='image.png')]
     image.setImage(image_file)
-    image_url = '{0}/view'.format(image.absolute_url())
-    self.globs['image_url'] = image_url
+    self.globs['image_url'] = '{0}/view'.format(image.absolute_url())
 
     ## Create News.
-    portal.invokeFactory(
-        'News Item',
-        'news',
-        title='News',
-        # image='image.png',
-    )
-    news = portal.news
+    news = portal[portal.invokeFactory('News Item', 'news', title='News')]
     news.setImage(image_file)
-    news_url = '{0}/view'.format(news.absolute_url())
-    self.globs['news_url'] = news_url
+    self.globs['news_url'] = '{0}/view'.format(news.absolute_url())
 
     transaction.commit()
 

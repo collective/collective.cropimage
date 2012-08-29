@@ -13,9 +13,7 @@ def reinstall_profiles(context, logger):
     setup = getToolByName(context, 'portal_setup')
     logger.info('Reinstalling collective.cropimage.')
     setup.runAllImportStepsFromProfile(
-        'profile-collective.cropimage:default',
-        purge_old=False
-    )
+        'profile-collective.cropimage:default', purge_old=False)
     logger.info('Reinstalled collective.cropimage.')
     logger.info('Setting collective.cropimage.ids')
     registry['collective.cropimage.ids'] = ids
@@ -25,6 +23,5 @@ def reinstall_profiles(context, logger):
 def upgrade_1_to_2(context, logger=None):
     """Update JSregistry."""
     if logger is None:
-        # Called as upgrade step: define our own logger.
         logger = logging.getLogger(__name__)
     reinstall_profiles(context, logger)

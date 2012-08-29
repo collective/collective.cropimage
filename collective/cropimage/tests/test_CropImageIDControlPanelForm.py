@@ -1,5 +1,5 @@
 import mock
-import unittest2 as unittest
+import unittest
 
 
 class TestCropImageIDControlPanelForm(unittest.TestCase):
@@ -67,48 +67,6 @@ class TestCropImageIDControlPanelForm(unittest.TestCase):
         self.assertEqual(add_form.widgets['min_height'].size, 3)
         self.assertEqual(add_form.widgets['max_width'].size, 3)
         self.assertEqual(add_form.widgets['max_height'].size, 3)
-
-    @mock.patch('collective.cropimage.browser.template.ID')
-    @mock.patch('collective.cropimage.browser.template.getUtility')
-    def test_get_items(self, getUtility, ID):
-        getUtility.return_value = {'collective.cropimage.ids': [{'id': 'small-image'}]}
-        item = self.createInstance()
-        items = item.get_items()
-        self.assertEqual(len(items), 1)
-        self.assertTrue(ID.called)
-
-    @mock.patch('collective.cropimage.browser.template.getUtility')
-    def test_add(self, getUtility):
-        ids = {'collective.cropimage.ids': []}
-        getUtility.return_value = ids
-        item = self.createInstance()
-        data = 'data'
-        item.add(data)
-        self.assertEqual(ids['collective.cropimage.ids'], ['data'])
-
-    @mock.patch('collective.cropimage.browser.template.getUtility')
-    def test_remove(self, getUtility):
-        ids = {'collective.cropimage.ids': [{'id': 'some_id'}]}
-        getUtility.return_value = ids
-        item = self.createInstance()
-        ## id does not exists in collective.cropimage.ids registry.
-        item.remove(('id', mock.Mock()))
-        self.assertEqual(ids['collective.cropimage.ids'], [{'id': 'some_id'}])
-        ## id does exists in collective.cropimage.ids registry.
-        item.remove(('some_id', mock.Mock()))
-        self.assertEqual(ids['collective.cropimage.ids'], [])
-
-    @mock.patch('collective.cropimage.browser.template.getUtility')
-    def test_before_update(self, getUtility):
-        ids = {'collective.cropimage.ids': [{'id': 'some_id'}]}
-        getUtility.return_value = ids
-        item = self.createInstance()
-        data = {'id': 'some_id', 'aaa': 'AAA'}
-        item.before_update(mock.Mock(), data)
-        self.assertEqual(
-            ids,
-            {'collective.cropimage.ids': [{'aaa': 'AAA', 'id': 'some_id'}]}
-        )
 
     def test_CropImageIDControlPanelView(self):
         from collective.cropimage.browser.template import CropImageIDControlPanelView

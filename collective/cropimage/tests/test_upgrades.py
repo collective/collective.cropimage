@@ -4,17 +4,23 @@ from collective.cropimage.tests.base import IntegrationTestCase
 import logging
 import mock
 
-IDS = [
-    {
-        'id': 'feed',
-        'ratio_width': 17.0,
-        'ratio_height': 15.0,
-        'min_width': 170.0,
-        'min_height': 150.0,
-        'max_width': 170.0,
-        'max_height': 150.0,
-    }
-]
+# IDS = [{
+#     'id': 'feed',
+#     'ratio_width': 17.0,
+#     'ratio_height': 15.0,
+#     'min_width': 170.0,
+#     'min_height': 150.0,
+#     'max_width': 170.0,
+#     'max_height': 150.0,
+# }]
+IDS = {'feed': {
+    'ratio_width': 17.0,
+    'ratio_height': 15.0,
+    'min_width': 170.0,
+    'min_height': 150.0,
+    'max_width': 170.0,
+    'max_height': 150.0,
+}}
 
 
 class TestUpgrades(IntegrationTestCase):
@@ -32,10 +38,7 @@ class TestUpgrades(IntegrationTestCase):
         registry = getUtility(IRegistry)
         registry['collective.cropimage.ids'] = IDS
         reinstall_profiles(self.setup, self.logger)
-        self.assertEqual(
-            registry['collective.cropimage.ids'],
-            IDS
-        )
+        self.assertEqual(registry['collective.cropimage.ids'], IDS)
 
     @mock.patch('collective.cropimage.upgrades.reinstall_profiles')
     def test_upgarade_1_to_2__with_logger(self, reinstall_profiles):

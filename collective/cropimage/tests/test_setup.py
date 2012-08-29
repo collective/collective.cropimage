@@ -21,7 +21,7 @@ class TestCase(IntegrationTestCase):
         self.assertEqual(len(registry['collective.cropimage.ids']), 0)
         field = registry.records['collective.cropimage.ids'].field
         self.assertEqual(field.title, u'Identifications')
-        self.assertEqual(field.description, u'ID name for CSS.')
+        self.assertEqual(field.description, u'ID for styling, etc.')
         from plone.registry.field import Dict
         isinstance(field.value_type, Dict)
 

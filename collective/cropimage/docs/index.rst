@@ -17,7 +17,7 @@ How to use the cropped image on your template
 
 For example::
 
-	<div tal:replace="structure python: context.restrictedTraverse('cropped-image')('image', 'small-image')" />
+    <div tal:replace="structure python: context.restrictedTraverse('cropped-image')('image', 'small-image')" />
 
 Here, **image** is the field name and **small-image** is the ID name.
 
