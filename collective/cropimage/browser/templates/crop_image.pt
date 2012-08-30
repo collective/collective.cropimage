@@ -1,11 +1,10 @@
-<html 
+<html
   i18n:domain="collective.cropimage"
   lang="en"
   metal:use-macro="context/main_template/macros/master"
   xmlns:i18n="http://xml.zope.org/namespaces/i18n"
   xmlns:metal="http://xml.zope.org/namespaces/metal"
-  xmlns:tal="http://xml.zope.org/namespaces/tal"
-  >
+  xmlns:tal="http://xml.zope.org/namespaces/tal">
   <head>
     <metal:javascriptslot fill-slot="javascript_head_slot">
         <tal:script tal:replace="structure view/script" />

@@ -1,8 +1,7 @@
 <configure
   i18n_domain="collective.cropimage"
   xmlns:browser="http://namespaces.zope.org/browser"
-  xmlns="http://namespaces.zope.org/zope"
-  >
+  xmlns="http://namespaces.zope.org/zope">
 
   <browser:resourceDirectory
     directory="javascripts"

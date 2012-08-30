@@ -73,6 +73,12 @@ class TestCase(IntegrationTestCase):
         from plone.browserlayer import utils
         self.failUnless(ICollectiveCropimageLayer in utils.registered_layers())
 
+    def test_metadata__version(self):
+        setup = getToolByName(self.portal, 'portal_setup')
+        self.assertEqual(
+            setup.getVersionForProfile('profile-collective.cropimage:default'),
+            u'3')
+
     def test_uninstall__package(self):
         installer = getToolByName(self.portal, 'portal_quickinstaller')
         installer.uninstallProducts(['collective.cropimage'])

@@ -1,13 +1,13 @@
 from setuptools import find_packages
 from setuptools import setup
-
 import os
+
 
 long_description = (
     open(os.path.join("collective", "cropimage", "docs", "README.rst")).read() + "\n" +
     open(os.path.join("collective", "cropimage", "docs", "HISTORY.rst")).read() + "\n" +
-    open(os.path.join("collective", "cropimage", "docs", "CONTRIBUTORS.rst")).read()
-)
+    open(os.path.join("collective", "cropimage", "docs", "CONTRIBUTORS.rst")).read())
+
 
 setup(
     name='collective.cropimage',

@@ -4,15 +4,16 @@ from collective.cropimage.tests.base import IntegrationTestCase
 import logging
 import mock
 
-# IDS = [{
-#     'id': 'feed',
-#     'ratio_width': 17.0,
-#     'ratio_height': 15.0,
-#     'min_width': 170.0,
-#     'min_height': 150.0,
-#     'max_width': 170.0,
-#     'max_height': 150.0,
-# }]
+OLD_IDS = [{
+    'id': 'feed',
+    'ratio_width': 17.0,
+    'ratio_height': 15.0,
+    'min_width': 170.0,
+    'min_height': 150.0,
+    'max_width': 170.0,
+    'max_height': 150.0,
+}]
+
 IDS = {'feed': {
     'ratio_width': 17.0,
     'ratio_height': 15.0,
@@ -52,3 +53,7 @@ class TestUpgrades(IntegrationTestCase):
         from collective.cropimage.upgrades import upgrade_1_to_2
         upgrade_1_to_2(self.setup)
         reinstall_profiles.assert_called_with(self.setup, logging.getLogger())
+
+    def test_convert_old_ids_to_new_ids(self):
+        from collective.cropimage.upgrades import convert_old_ids_to_new_ids
+        self.assertEqual(convert_old_ids_to_new_ids(OLD_IDS), IDS)

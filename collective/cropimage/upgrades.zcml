@@ -1,8 +1,7 @@
 <configure
   i18n_domain="collective.cropimage"
   xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
-  xmlns="http://namespaces.zope.org/zope"
-  >
+  xmlns="http://namespaces.zope.org/zope">
 
   <genericsetup:upgradeStep
     description=""
@@ -12,6 +11,16 @@
     sortkey="1"
     source="1"
     title="Update JSregistry"
+    />
+
+  <genericsetup:upgradeStep
+    description=""
+    destination="3"
+    handler="collective.cropimage.upgrades.upgrade_2_to_3"
+    profile="collective.cropimage:default"
+    sortkey="1"
+    source="2"
+    title="Update registry record"
     />
 
 </configure>

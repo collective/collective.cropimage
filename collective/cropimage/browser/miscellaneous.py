@@ -15,15 +15,9 @@ class Miscellaneous(BrowserView):
         ids = registry['collective.cropimage.ids']
         context = aq_inner(self.context)
         if hasattr(context, 'Schema') and len(ids) > 0:
-            keys = [
-                key for key in context.Schema().keys() if isinstance(
-                    context.getField(key),
-                    ExtensionBlobField
-                ) or isinstance(
-                    context.getField(key),
-                    ImageField
-                )
-            ]
+            keys = [key for key in context.Schema().keys() if isinstance(
+                    context.getField(key), ExtensionBlobField) or isinstance(
+                    context.getField(key), ImageField)]
             return keys
 
     def has_image(self):
