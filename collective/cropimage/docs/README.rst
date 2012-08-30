@@ -1,19 +1,19 @@
-=========================
+====================
 collective.cropimage
-=========================
+====================
 
 This package provides image cropping for images which reside in ATContentTypes fields in Plone.
 Those images can be cropped without losing the original images and without adding new images to blobs.
 It only sets the cropping dimension to the object annotations.
 
-Tested With
---------------
+Currently tested With
+---------------------
 * Plone-4.2.1 [taito]
 * Image and News Item Content Types.
 * collective.contentleadimage
 
-Further Documentation URL
--------------------------------
+Farther Documentation URL
+-------------------------
 
 `http://packages.python.org/collective.cropimage/
 <http://packages.python.org/collective.cropimage/>`_
