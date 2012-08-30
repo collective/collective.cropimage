@@ -1,7 +1,7 @@
 Changelog
 ------------
 
-1.3 (2012-08-XX)
+1.3 (2012-08-30)
 ================
 
 - Fixed bug in registry.xml export. [taito]
