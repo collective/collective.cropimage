@@ -1,7 +1,10 @@
+# --- PLEASE EDIT THE LINES BELOW CORRECTLY ---
+# SOME DESCRIPTIVE TITLE.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2011-11-12 13:47+0000\n"
+"POT-Creation-Date: 2012-11-14 23:05+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,7 +17,7 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: collective.cropimage\n"
 
-#: ./browser/template.py:21
+#: ./browser/template.py:23
 msgid "Crop Image ID"
 msgstr ""
 
@@ -22,63 +25,63 @@ msgstr ""
 msgid "Crop Image Registry"
 msgstr ""
 
-#: ./id.py:11
+#: ./interfaces.py:11
 msgid "ID"
 msgstr ""
 
-#: ./id.py:46
+#: ./interfaces.py:40
 msgid "Keep this field 0.0 if you do not need to set maximum height."
 msgstr ""
 
-#: ./id.py:40
+#: ./interfaces.py:35
 msgid "Keep this field 0.0 if you do not need to set maximum width."
 msgstr ""
 
-#: ./id.py:34
+#: ./interfaces.py:30
 msgid "Keep this field 0.0 if you do not need to set minimum height."
 msgstr ""
 
-#: ./id.py:28
+#: ./interfaces.py:25
 msgid "Keep this field 0.0 if you do not need to set minimum width."
 msgstr ""
 
-#: ./id.py:16
+#: ./interfaces.py:15
 msgid "Keep this field 0.0 if you do not need to set width/height ratio."
 msgstr ""
 
-#: ./id.py:45
+#: ./interfaces.py:39
 msgid "Maximum Height"
 msgstr ""
 
-#: ./id.py:39
+#: ./interfaces.py:34
 msgid "Maximum Width"
 msgstr ""
 
-#: ./id.py:33
+#: ./interfaces.py:29
 msgid "Minimum Height"
 msgstr ""
 
-#: ./id.py:27
+#: ./interfaces.py:24
 msgid "Minimum Width"
 msgstr ""
 
-#: ./id.py:21
+#: ./interfaces.py:19
 msgid "Ratio Height"
 msgstr ""
 
-#: ./id.py:15
+#: ./interfaces.py:14
 msgid "Ratio Width"
 msgstr ""
 
-#: ./browser/templates/crop_image.pt:48
+#: ./browser/templates/crop_image.pt:45
 msgid "Save"
 msgstr ""
 
-#: ./browser/templates/crop_image.pt:21
+#: ./browser/templates/crop_image.pt:19
 msgid "Select"
 msgstr ""
 
-#: ./browser/templates/controlpanel.pt:12
-msgid "To set aspect ratio, minimum and maximum size, give both width and height values."
+#: ./browser/templates/controlpanel.pt:11
+msgid "To set aspect ratio, minimum and maximum size for cropped image, give both width and height values."
 msgstr ""
 
