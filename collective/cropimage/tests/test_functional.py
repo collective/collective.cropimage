@@ -87,6 +87,4 @@ def DocFileSuite(testfile, flags=FLAGS, setUp=setUp, layer=FUNCTIONAL_TESTING):
 
 
 def test_suite():
-    return unittest.TestSuite([
-        DocFileSuite('functional/browser.txt'),
-        ])
+    return unittest.TestSuite([DocFileSuite('functional/browser.txt')])

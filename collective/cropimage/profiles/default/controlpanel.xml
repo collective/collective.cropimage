@@ -2,8 +2,7 @@
 <object
   i18n:domain="collective.cropimage"
   name="portal_controlpanel"
-  xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-  >
+  xmlns:i18n="http://xml.zope.org/namespaces/i18n">
 
   <configlet
     action_id="crop_image_registry"
@@ -14,8 +13,7 @@
     icon_expr="string:$portal_url/cut_icon.png"
     title="Crop Image Registry"
     url_expr="string:${portal_url}/@@crop-image-controlpanel"
-    visible="True"
-    >
+    visible="True">
     <permission>Manage portal</permission>
   </configlet>
 

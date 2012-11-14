@@ -8,7 +8,8 @@ It only sets the cropping dimension to the object annotations.
 
 Currently tested With
 ---------------------
-* Plone-4.2.1 [taito]
+
+* Plone-4.2.2 [taito]
 * Image and News Item Content Types.
 * collective.contentleadimage
 
