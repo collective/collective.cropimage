@@ -1,8 +1,8 @@
 Change log
 ----------
 
-1.4.1 (2013-01-06)
-==================
+1.5 (2013-01-06)
+================
 
 - Tested with Plone-4.2.3. [taito]
 - Added testing integration to Travis CI. [taito]
