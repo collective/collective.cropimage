@@ -5,9 +5,9 @@ import os
 
 
 long_description = (
-    open(os.path.join("collective", "cropimage", "docs", "README.rst")).read() + "\n" +
-    open(os.path.join("collective", "cropimage", "docs", "HISTORY.rst")).read() + "\n" +
-    open(os.path.join("collective", "cropimage", "docs", "CONTRIBUTORS.rst")).read())
+    open(os.path.join("src", "collective", "cropimage", "docs", "README.rst")).read() + "\n" +
+    open(os.path.join("src", "collective", "cropimage", "docs", "HISTORY.rst")).read() + "\n" +
+    open(os.path.join("src", "collective", "cropimage", "docs", "CONTRIBUTORS.rst")).read())
 
 
 setup(
@@ -15,8 +15,6 @@ setup(
     version='1.4',
     description="Store cropped image dimension for farther usage.",
     long_description=long_description,
-    # Get more strings from
-    # http://pypi.python.org/pypi?:action=list_classifiers
     classifiers=[
         "Framework :: Plone",
         "Framework :: Plone :: 4.2",
@@ -28,17 +26,15 @@ setup(
     author_email='taito.horiuchi@gmail.com',
     url='https://github.com/collective/collective.cropimage/',
     license='BSD',
-    packages=find_packages(exclude=['ez_setup']),
+    packages=find_packages('src', exclude=['ez_setup']),
+    package_dir={'': 'src'},
     namespace_packages=['collective'],
     include_package_data=True,
     zip_safe=False,
     install_requires=[
-        'Plone>=4.2',
+        'Products.CMFPlone',
         'hexagonit.testing',
-        'plone.app.registry',
-        'plone.browserlayer',
-        'setuptools',
-        'zope.i18nmessageid'],
+        'setuptools'],
     entry_points="""
     # -*- Entry points: -*-
 

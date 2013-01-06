@@ -1,1 +1,1 @@
-See `collective/cropimage/docs/README.rst <https://github.com/collective/collective.cropimage/blob/master/collective/cropimage/docs/README.rst>`_
+See `src/collective/cropimage/docs/README.rst <https://github.com/collective/collective.cropimage/blob/master/src/collective/cropimage/docs/README.rst>`_

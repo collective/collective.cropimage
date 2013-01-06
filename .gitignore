@@ -5,6 +5,6 @@
 *~
 .DS_Store
 .long-description.html
-collective/cropimage/docs/_build/*
 dist
 setup.cfg
+src/collective/cropimage/docs/_build/*

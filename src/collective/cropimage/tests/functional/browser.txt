@@ -8,7 +8,7 @@ Go to image::
 
 Crop Image should now be under Actions::
 
-    >>> 'id="crop_image"' in browser.contents
+    >>> 'Crop Image' in browser.contents
     False
 
 Go to control panel::
@@ -83,19 +83,19 @@ Go to image::
 
 Crop Image should not be under Actions::
 
-    >>> 'id="crop_image"' in browser.contents
+    >>> 'Crop Image' in browser.contents
     False
 
     >>> browser.getLink('picture').click()
 
 Crop Image should now be under Actions::
 
-    >>> 'id="crop_image"' in browser.contents
+    >>> 'Crop Image' in browser.contents
     True
 
 Go to Crop Image page::
 
-    >>> browser.getLink(id='crop_image').click()
+    >>> browser.getLink('Crop Image').click()
 
     >>> print browser.bycss('#id-name')
     --- 1 ---
@@ -181,12 +181,12 @@ Go to news::
 
 Crop Image should now be under Actions::
 
-    >>> 'id="crop_image"' in browser.contents
+    >>> 'Crop Image' in browser.contents
     True
 
 Go to Crop Image page::
 
-    >>> browser.getLink(id='crop_image').click()
+    >>> browser.getLink('Crop Image').click()
 
     >>> news_crop_image_url = browser.url
 
