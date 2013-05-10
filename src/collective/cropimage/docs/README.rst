@@ -9,6 +9,6 @@ It only sets the cropping dimension to the object annotations.
 Currently tested With
 ---------------------
 
-* Plone-4.2.3 [taito]
+* Plone-4.3 and Python-2.7.x
 * Image and News Item Content Types.
 * collective.contentleadimage
