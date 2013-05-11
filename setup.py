@@ -12,7 +12,7 @@ long_description = (
 
 setup(
     name='collective.cropimage',
-    version='1.5',
+    version='1.6',
     description="Store cropped image dimension for farther usage.",
     long_description=long_description,
     classifiers=[
