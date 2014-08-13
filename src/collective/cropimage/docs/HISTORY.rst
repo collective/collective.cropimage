@@ -1,7 +1,7 @@
 Change log
 ----------
 
-1.7 (2014-08-xx)
+1.7 (2014-08-13)
 ================
 
 - Update jquery.jcrop.js to version 0.9.12. [taito]
