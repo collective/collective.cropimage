@@ -1,33 +1,39 @@
 Change log
 ----------
 
+1.7 (2014-08-xx)
+================
+
+- Update jquery.jcrop.js to version 0.9.12. [taito]
+- Fix for image scaling site which uses max-width. [taito]
+
 1.6 (2013-05-11)
 ================
 
-- Moved test packages to extras_require. [taito]
+- Move test packages to extras_require. [taito]
 
 1.5 (2013-01-06)
 ================
 
-- Tested with Plone-4.2.3. [taito]
-- Added testing integration to Travis CI. [taito]
+- Test with Plone-4.2.3. [taito]
+- Add testing integration to Travis CI. [taito]
 
 1.4 (2012-11-14)
 ================
 
-- Tested with Plone-4.2.2. [taito]
+- Test with Plone-4.2.2. [taito]
 
 1.3 (2012-08-30)
 ================
 
-- Fixed bug in registry.xml export. [taito]
+- Fix bug in registry.xml export. [taito]
 
 1.2.1 (2012-04-07)
 ==================
 
-- Package name changed from inicie.cropimage into collective.cropimage. [taito]
-- Turned into non-Zope2 package. [taito]
-- Javascript loading error for production site fixed. [taito]
+- Change package name from inicie.cropimage into collective.cropimage. [taito]
+- Turn into non-Zope2 package. [taito]
+- Fix javascript loading error for production site. [taito]
 
 1.1.1 (2012-01-25)
 ==================
@@ -38,8 +44,8 @@ Change log
 ==================
 
 - Setting aspectRatio, minSize and maxSize is not available. [taito]
-- Copy right updated. [taito]
-- Tested with collective.contentleadimage. [taito]
+- Update copy right. [taito]
+- Test with collective.contentleadimage. [taito]
 
 1.0 (2011-10-03)
 ==================

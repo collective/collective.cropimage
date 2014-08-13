@@ -48,12 +48,12 @@ def setUp(self):
 
     image_file = open(os.path.join(os.path.dirname(__file__), 'image', 'image.png'), 'rb')
 
-    ## Creat Image.
+    # Creat Image.
     image = portal[portal.invokeFactory('Image', 'picture', image='image.png')]
     image.setImage(image_file)
     self.globs['image_url'] = '{0}/view'.format(image.absolute_url())
 
-    ## Create News.
+    # Create News.
     news = portal[portal.invokeFactory('News Item', 'news', title='News')]
     news.setImage(image_file)
     self.globs['news_url'] = '{0}/view'.format(news.absolute_url())

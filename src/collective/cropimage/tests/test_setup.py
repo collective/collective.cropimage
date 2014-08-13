@@ -12,7 +12,7 @@ class TestCase(IntegrationTestCase):
         installer = getToolByName(self.portal, 'portal_quickinstaller')
         self.failUnless(installer.isProductInstalled('collective.cropimage'))
 
-    ## registry.xml
+    # registry.xml
     def test_ids_registry(self):
         """Test if collective.cropimage.ids is properly registered."""
         from zope.component import getUtility
@@ -25,7 +25,7 @@ class TestCase(IntegrationTestCase):
         from plone.registry.field import Dict
         isinstance(field.value_type, Dict)
 
-    ## controlpanel.xml
+    # controlpanel.xml
     def test_controlpanel(self):
         controlpanel = getToolByName(self.portal, 'portal_controlpanel')
         action = [
@@ -38,7 +38,7 @@ class TestCase(IntegrationTestCase):
         self.assertTrue(action.visible)
         self.assertEqual(action.permissions, ('Manage portal',))
 
-    ## actions.xml
+    # actions.xml
     def test_crop_image(self):
         actions = getToolByName(self.portal, 'portal_actions')
         action = actions.object_buttons.crop_image
@@ -54,7 +54,7 @@ class TestCase(IntegrationTestCase):
         self.assertEqual(('Modify portal content',), action.getProperty('permissions'))
         self.assertEqual(True, action.getProperty('visible'))
 
-    ## jsregistry.xml
+    # jsregistry.xml
     def test_jsregistry(self):
         javascripts = getToolByName(self.portal, 'portal_javascripts')
         res = '++resource++collective.cropimage.javascripts/jquery.Jcrop.js'
@@ -62,7 +62,7 @@ class TestCase(IntegrationTestCase):
         item = javascripts.getResource(res)
         self.assertEqual(item.getCompression(), 'none')
 
-    ## cssregistry.xml
+    # cssregistry.xml
     def test_cssregistry(self):
         css = getToolByName(self.portal, 'portal_css')
         res = '++resource++collective.cropimage.stylesheets/main.css'
@@ -92,7 +92,7 @@ class TestCase(IntegrationTestCase):
         from zope.component import getUtility
         from plone.registry.interfaces import IRegistry
         registry = getUtility(IRegistry)
-        ## collective.cropimage.banks should be uninstalled form registry.
+        # collective.cropimage.banks should be uninstalled form registry.
         self.assertRaises(KeyError, lambda: registry['collective.cropimage.ids'])
 
     def test_uninstall__controlpanel(self):
@@ -100,20 +100,20 @@ class TestCase(IntegrationTestCase):
         installer.uninstallProducts(['collective.cropimage'])
         controlpanel = getToolByName(self.portal, 'portal_controlpanel')
         ids = [action.id for action in controlpanel.listActions()]
-        ## crop_image_registry configlet should be uninstalled from controlpanel
+        # crop_image_registry configlet should be uninstalled from controlpanel
         self.assertTrue('crop_image_registry' not in ids)
 
     def test_uninstall__actions(self):
         installer = getToolByName(self.portal, 'portal_quickinstaller')
         installer.uninstallProducts(['collective.cropimage'])
-        ## crop_image should be uninstalled from actions
+        # crop_image should be uninstalled from actions
         actions = getToolByName(self.portal, 'portal_actions')
         self.assertFalse(hasattr(actions.object_buttons, 'crop_image'))
 
     def test_uninstall__jsregistry(self):
         installer = getToolByName(self.portal, 'portal_quickinstaller')
         installer.uninstallProducts(['collective.cropimage'])
-        ## jsregisty.xml should be uninstalled.
+        # jsregisty.xml should be uninstalled.
         javascripts = getToolByName(self.portal, 'portal_javascripts')
         res = '++resource++collective.cropimage.javascripts/jquery.Jcrop.js'
         self.assertFalse(res in javascripts.getResourceIds())
@@ -121,7 +121,7 @@ class TestCase(IntegrationTestCase):
     def test_uninstall__cssregistry(self):
         installer = getToolByName(self.portal, 'portal_quickinstaller')
         installer.uninstallProducts(['collective.cropimage'])
-        ## cssregistry.xml should be uninstalled.
+        # cssregistry.xml should be uninstalled.
         css = getToolByName(self.portal, 'portal_css')
         res = '++resource++collective.cropimage.stylesheets/main.css'
         self.assertFalse(res in css.getResourceIds())

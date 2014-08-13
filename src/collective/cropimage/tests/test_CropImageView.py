@@ -70,9 +70,9 @@ class TestCropImageView(unittest.TestCase):
         request = mock.Mock()
         item = self.createCropImageView(context, request)
         form = {
-            'x1': '10',
+            'x': '10',
             'x2': '20',
-            'y1': '30',
+            'y': '30',
             'y2': '60',
             'w': '20',
             'h': '30',
@@ -82,7 +82,7 @@ class TestCropImageView(unittest.TestCase):
             item.dimension(form),
             {
                 'small-image': {
-                    'y1': '30', 'y2': '60', 'w': '20', 'x2': '20', 'h': '30', 'x1': '10'
+                    'y': '30', 'y2': '60', 'w': '20', 'x2': '20', 'h': '30', 'x': '10'
                 }
             }
         )
@@ -101,7 +101,7 @@ class TestCropImageView(unittest.TestCase):
             [
                 {
                     'field': 'image',
-                    'full-image': '<img id="cropbox" src="..." />',
+                    'full-image': '<img id="jcrop_target" src="..." />',
                     'select': '<select />',
                     'previews': 'PREVIEWS'
                 }

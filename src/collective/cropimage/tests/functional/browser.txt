@@ -120,8 +120,8 @@ Select small-image::
 
 Crop image::
 
-    >>> browser.getControl(name="x1").value = '10'
-    >>> browser.getControl(name="y1").value =  '20'
+    >>> browser.getControl(name="x").value = '10'
+    >>> browser.getControl(name="y").value =  '20'
     >>> browser.getControl(name="x2").value =  '30'
     >>> browser.getControl(name="y2").value =  '50'
     >>> browser.getControl(name="w").value =  '20'
@@ -134,7 +134,7 @@ Crop image::
     True
     >>> 'class="crop" style="width:20px;height:30px;"' in browser.contents
     True
-    >>> '<p style="clip:rect(20px 30px 50px 10px);top:-20px;left:-10px;">' in browser.contents
+    >>> '<p style="clip:rect(20px 30px 50px 10px);top:-20px;left:-10px;position:absolute">' in browser.contents
     True
 
 Select ID Name as middle-image::
@@ -149,8 +149,8 @@ Select ID Name as middle-image::
 
 Crop more::
 
-    >>> browser.getControl(name="x1").value = '100'
-    >>> browser.getControl(name="y1").value =  '200'
+    >>> browser.getControl(name="x").value = '100'
+    >>> browser.getControl(name="y").value =  '200'
     >>> browser.getControl(name="x2").value =  '300'
     >>> browser.getControl(name="y2").value =  '500'
     >>> browser.getControl(name="w").value =  '200'
@@ -163,7 +163,7 @@ Crop more::
     True
     >>> 'class="crop" style="width:20px;height:30px;"' in browser.contents
     True
-    >>> '<p style="clip:rect(20px 30px 50px 10px);top:-20px;left:-10px;">' in browser.contents
+    >>> '<p style="clip:rect(20px 30px 50px 10px);top:-20px;left:-10px;position:absolute">' in browser.contents
     True
 
     >>> 'id="image-middle-image-preview"' in browser.contents
@@ -172,7 +172,7 @@ Crop more::
     True
     >>> 'class="crop" style="width:200px;height:300px;"' in browser.contents
     True
-    >>> '<p style="clip:rect(200px 300px 500px 100px);top:-200px;left:-100px;">' in browser.contents
+    >>> '<p style="clip:rect(200px 300px 500px 100px);top:-200px;left:-100px;position:absolute">' in browser.contents
     True
 
 Go to news::
@@ -202,8 +202,8 @@ Select ID Name as small-image::
 
 Crop image::
 
-    >>> browser.getControl(name="x1").value = '10'
-    >>> browser.getControl(name="y1").value =  '20'
+    >>> browser.getControl(name="x").value = '10'
+    >>> browser.getControl(name="y").value =  '20'
     >>> browser.getControl(name="x2").value =  '30'
     >>> browser.getControl(name="y2").value =  '50'
     >>> browser.getControl(name="w").value =  '20'
@@ -216,7 +216,7 @@ Crop image::
     True
     >>> 'class="crop" style="width:20px;height:30px;"' in browser.contents
     True
-    >>> '<p style="clip:rect(20px 30px 50px 10px);top:-20px;left:-10px;">' in browser.contents
+    >>> '<p style="clip:rect(20px 30px 50px 10px);top:-20px;left:-10px;position:absolute">' in browser.contents
     True
 
 Select ID Name as middle-image::
@@ -231,8 +231,8 @@ Select ID Name as middle-image::
 
 Crop more::
 
-    >>> browser.getControl(name="x1").value = '100'
-    >>> browser.getControl(name="y1").value =  '200'
+    >>> browser.getControl(name="x").value = '100'
+    >>> browser.getControl(name="y").value =  '200'
     >>> browser.getControl(name="x2").value =  '300'
     >>> browser.getControl(name="y2").value =  '500'
     >>> browser.getControl(name="w").value =  '200'
@@ -245,7 +245,7 @@ Crop more::
     True
     >>> 'class="crop" style="width:20px;height:30px;"' in browser.contents
     True
-    >>> '<p style="clip:rect(20px 30px 50px 10px);top:-20px;left:-10px;">' in browser.contents
+    >>> '<p style="clip:rect(20px 30px 50px 10px);top:-20px;left:-10px;position:absolute">' in browser.contents
     True
 
     >>> 'id="image-middle-image-preview"' in browser.contents
@@ -254,7 +254,7 @@ Crop more::
     True
     >>> 'class="crop" style="width:200px;height:300px;"' in browser.contents
     True
-    >>> '<p style="clip:rect(200px 300px 500px 100px);top:-200px;left:-100px;">' in browser.contents
+    >>> '<p style="clip:rect(200px 300px 500px 100px);top:-200px;left:-100px;position:absolute">' in browser.contents
     True
 
 Go to Control Panel::

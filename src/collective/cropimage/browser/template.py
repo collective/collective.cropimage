@@ -154,32 +154,28 @@ class CropImageView(BrowserView):
         variables += minSize if minSize is not None else ''
         variables += maxSize if maxSize is not None else ''
         script = """<script type="text/javascript">
-        jq(function(jq) {
-            jq('#cropbox').Jcrop({
-                onChange:   showCoords,
-                onSelect:   showCoords,
-                onRelease:  clearCoords,"""
+        // Remember to invoke within jQuery(window).load(...)
+        // If you don't, Jcrop may not initialize properly
+        $(function(){
+            $('#jcrop_target').Jcrop({
+                onChange: showCoords,
+                onSelect: showCoords,"""
         script += variables
         script += """
             });
         });
-    function showCoords(c)
-    {
-      jq('#x1').val(c.x);
-      jq('#y1').val(c.y);
-      jq('#x2').val(c.x2);
-      jq('#y2').val(c.y2);
-      jq('#w').val(c.w);
-      jq('#h').val(c.h);
-    };
-    function clearCoords()
-    {
-      jq('#coords input').val('');
-      jq('#h').css({color:'red'});
-      window.setTimeout(function(){
-        jq('#h').css({color:'inherit'});
-      },500);
-    };
+
+        // Our simple event handler, called from onChange and onSelect
+        // event handlers, as per the Jcrop invocation above
+        function showCoords(c)
+        {
+            $('#x').val(c.x);
+            $('#y').val(c.y);
+            $('#x2').val(c.x2);
+            $('#y2').val(c.y2);
+            $('#w').val(c.w);
+            $('#h').val(c.h);
+        };
 </script>
 """
         return script
@@ -195,7 +191,7 @@ class CropImageView(BrowserView):
         :param form: Form data
         :type form: dict
         """
-        keys = ['x1', 'x2', 'y1', 'y2', 'w', 'h']
+        keys = ['x', 'x2', 'y', 'y2', 'w', 'h']
         res = {}
         for key in keys:
             res.update(
@@ -210,7 +206,7 @@ class CropImageView(BrowserView):
         for field in self.fields():
             full = context.getField(field).tag(context)
             item = {
-                'full-image': '{0} id="cropbox" {1}'.format(full[:4], full[5:]),
+                'full-image': '{0} id="jcrop_target" {1}'.format(full[:4], full[5:]),
                 'select': self.select(),
                 'field': field,
                 'previews': self.previews(field),

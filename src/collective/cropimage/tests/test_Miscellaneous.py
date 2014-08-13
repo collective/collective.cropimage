@@ -73,5 +73,5 @@ class TestMiscellaneous(unittest.TestCase):
         }
         self.assertEqual(
             item.cropped_image(field, id_name),
-            '<div class="crop" style="width:60px;height:45px;"><p style="clip:rect(15px 70px 60px 10px);top:-15px;left:-10px;"><img src="url/field" alt="title" title="title" /></p></div>'
+            '<div class="crop" style="width:60px;height:45px;"><p style="clip:rect(15px 70px 60px 10px);top:-15px;left:-10px;position:absolute"><img src="url/field" alt="title" title="title" /></p></div>'
         )

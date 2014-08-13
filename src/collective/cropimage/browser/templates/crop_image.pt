@@ -25,31 +25,33 @@
       </form>
       <tal:images tal:repeat="image view/images">
         <div tal:replace="structure image/full-image" />
-        <form id="coords"
-              class="coords"
-              method="post"
-              tal:attributes="action view/current_url">
-          <div>
-            <label>X1 <input type="text" size="4" id="x1" name="x1" /></label>
-            <label>Y1 <input type="text" size="4" id="y1" name="y1" /></label>
-            <label>X2 <input type="text" size="4" id="x2" name="x2" /></label>
-            <label>Y2 <input type="text" size="4" id="y2" name="y2" /></label>
-            <label>W <input type="text" size="4" id="w" name="w" /></label>
-            <label>H <input type="text" size="4" id="h" name="h" /></label>
-          </div>
-          <div>
-            <input type="hidden" name="field"
-                   tal:attributes="value image/field" />
-            <input type="hidden" name="id-name"
-                   tal:attributes="value view/selected_id" />
-            <input type="submit"
-                   class="context"
-                   value="Save"
-                   i18n:attributes="value"
-                   name="form.button.Save"
-                   />
-          </div>
-        </form>
+        <div class="jc_coords">
+          <form id="coords"
+                class="coords"
+                method="post"
+                tal:attributes="action view/current_url">
+            <div>
+              <label>X1 <input type="text" size="4" id="x" name="x" /></label>
+              <label>Y1 <input type="text" size="4" id="y" name="y" /></label>
+              <label>X2 <input type="text" size="4" id="x2" name="x2" /></label>
+              <label>Y2 <input type="text" size="4" id="y2" name="y2" /></label>
+              <label>W <input type="text" size="4" id="w" name="w" /></label>
+              <label>H <input type="text" size="4" id="h" name="h" /></label>
+            </div>
+            <div>
+              <input type="hidden" name="field"
+                     tal:attributes="value image/field" />
+              <input type="hidden" name="id-name"
+                     tal:attributes="value view/selected_id" />
+              <input type="submit"
+                     class="context"
+                     value="Save"
+                     i18n:attributes="value"
+                     name="form.button.Save"
+                     />
+            </div>
+          </form>
+        </div>
         <tal:previews tal:repeat="preview image/previews">
           <div tal:replace="structure preview" />
         </tal:previews>

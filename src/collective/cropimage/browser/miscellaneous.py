@@ -41,10 +41,13 @@ class Miscellaneous(BrowserView):
             width = 'width:{0}px;'.format(data['w'])
             height = 'height:{0}px;'.format(data['h'])
             html = '<div class="crop" style="{0}{1}">'.format(width, height)
-            clip = 'clip:rect({0}px {1}px {2}px {3}px);'.format(data['y1'], data['x2'], data['y2'], data['x1'])
-            top = 'top:-{0}px;'.format(data['y1'])
-            left = 'left:-{0}px;'.format(data['x1'])
-            html += '<p style="{0}{1}{2}">'.format(clip, top, left)
+            if 'x1' in data:
+                data['x'] = data['x1']
+                data['y'] = data['y1']
+            clip = 'clip:rect({0}px {1}px {2}px {3}px);'.format(data['y'], data['x2'], data['y2'], data['x'])
+            top = 'top:-{0}px;'.format(data['y'])
+            left = 'left:-{0}px;'.format(data['x'])
+            html += '<p style="{0}{1}{2}position:absolute">'.format(clip, top, left)
             src = '{0}/{1}'.format(context.absolute_url(), field)
             title = context.Title()
             html += '<img src="{0}" alt="{1}" title="{1}" />'.format(src, title)
