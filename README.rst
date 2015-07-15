@@ -6,10 +6,14 @@ This package provides image cropping for images which reside in ATContentTypes f
 Those images can be cropped without losing the original images and without adding new images to blobs.
 It only sets the cropping dimension to the object annotations.
 
+
+.. image:: https://secure.travis-ci.org/collective/collective.cropimage.png
+    :target: http://travis-ci.org/collective/collective.cropimage
+
 Currently tested With
 ---------------------
 
-* Plone-4.3.3 and Python-2.7.x
+* Plone-4.3.6 and Python-2.7.10
 * Image and News Item Content Types.
 * collective.contentleadimage
 

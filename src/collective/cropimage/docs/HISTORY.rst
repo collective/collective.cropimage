@@ -1,6 +1,11 @@
 Change log
 ----------
 
+1.8 (2015-07-15)
+================
+
+- Add dependency to Products.CMFPlacefulWorkflow for test. [taito]
+
 1.7 (2014-08-13)
 ================
 
