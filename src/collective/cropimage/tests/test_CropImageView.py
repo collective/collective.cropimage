@@ -96,8 +96,8 @@ class TestCropImageView(unittest.TestCase):
         item = self.createCropImageView(context, request)
         item.fields = mock.Mock(return_value=['image'])
         aq_inner().getField().tag.return_value = '<img src="..." />'
-        aq_inner().getField().get().width.return_value = 680
-        aq_inner().getField().get().height.return_value = 680
+        aq_inner().getField().get().width = 680
+        aq_inner().getField().get().height = 680
         item.select = mock.Mock(return_value='<select />')
         item.previews = mock.Mock(return_value='PREVIEWS')
         self.assertEqual(
