@@ -191,7 +191,7 @@ class CropImageView(BrowserView):
         :param form: Form data
         :type form: dict
         """
-        keys = ['x', 'x2', 'y', 'y2', 'w', 'h']
+        keys = ['x', 'x2', 'y', 'y2', 'w', 'h', 'width', 'height']
         res = {}
         for key in keys:
             res.update(
@@ -204,12 +204,21 @@ class CropImageView(BrowserView):
         context = aq_inner(self.context)
         results = []
         for field in self.fields():
+            original_image = context.getField(field).get(context)
+            width = original_image.width
+            height = original_image.height
+            max_width = 680
+            if width > max_width:
+                height = int(round(float(max_width) / float(width) * float(height), 0))
+                width = max_width
             full = context.getField(field).tag(context)
             item = {
                 'full-image': '{0} id="jcrop_target" {1}'.format(full[:4], full[5:]),
                 'select': self.select(),
                 'field': field,
                 'previews': self.previews(field),
+                'width': width,
+                'height': height,
             }
             results.append(item)
         return results

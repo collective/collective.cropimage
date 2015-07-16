@@ -50,7 +50,11 @@ class Miscellaneous(BrowserView):
             html += '<p style="{0}{1}{2}position:absolute">'.format(clip, top, left)
             src = '{0}/{1}'.format(context.absolute_url(), field)
             title = context.Title()
-            html += '<img src="{0}" alt="{1}" title="{1}" />'.format(src, title)
+            if data.get('width'):
+                html += '<img src="{0}" alt="{1}" title="{1}" width="{2}" height="{3}" />'.format(
+                    src, title, data['width'], data['height'])
+            else:
+                html += '<img src="{0}" alt="{1}" title="{1}" />'.format(src, title)
             html += '</p>'
             html += '</div>'
             return html

@@ -76,13 +76,15 @@ class TestCropImageView(unittest.TestCase):
             'y2': '60',
             'w': '20',
             'h': '30',
+            'width': '600',
+            'height': '400',
             'id-name': 'small-image',
         }
         self.assertEqual(
             item.dimension(form),
             {
                 'small-image': {
-                    'y': '30', 'y2': '60', 'w': '20', 'x2': '20', 'h': '30', 'x': '10'
+                    'y': '30', 'y2': '60', 'w': '20', 'x2': '20', 'h': '30', 'x': '10', 'width': '600', 'height': '400'
                 }
             }
         )
@@ -103,7 +105,9 @@ class TestCropImageView(unittest.TestCase):
                     'field': 'image',
                     'full-image': '<img id="jcrop_target" src="..." />',
                     'select': '<select />',
-                    'previews': 'PREVIEWS'
+                    'previews': 'PREVIEWS',
+                    'width': 680,
+                    'height': 680,
                 }
             ]
         )
