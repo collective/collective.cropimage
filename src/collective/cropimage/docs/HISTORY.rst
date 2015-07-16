@@ -4,7 +4,7 @@ Change log
 1.8 (2015-07-16)
 ================
 
-- Add dependency to Products.CMFPlacefulWorkflow for test. [taito]
+- Add dependency to Products.CMFPlacefulWorkflow for test. [taito]
 - Fix crop image for image wider than 680px.
 
 1.7 (2014-08-13)
